@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Train</title>
+<meta name=viewport content="width=device-width,initial-scale=1, user-scalable=no">
+<link href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+<script src="http://cdn.bootcss.com/jquery/1.12.1/jquery.min.js"></script>
+<!-- <script src="//cdn.bootcss.com/angular.js/1.5.0/angular.js"></script> -->
+</head>
+
+<body>
+		<p style="height:24px"></p>
+		<div class="container">
+      <form id="train-form">
+  		  <div class="form-group">
+  		    <label for="" class="control-label">Phrase</label>
+  		    <textarea id="text" name="phrase" class="form-control" rows="3"></textarea>
+  		  </div>
+
+  		  <div class="form-group">
+  		    <label for="" class="control-label">Emotion</label>
+					<div class="radio">
+						<label>
+				      <input type="radio" name="emotion" value="joy"> Joy
+				    </label>
+
+						<label>
+				      <input type="radio" name="emotion" value="surprise"> Surprise
+				    </label>
+						<label>
+				      <input type="radio" name="emotion" value="fear"> fear
+				    </label>
+						<label>
+				      <input type="radio" name="emotion" value="sadness"> Sadness
+				    </label>
+						<label>
+				      <input type="radio" name="emotion" value="disgust"> disgust
+				    </label>
+						<label>
+				      <input type="radio" name="emotion" value="anger"> anger
+				    </label>
+						<label>
+				      <input type="radio" name="emotion" value="scorn"> scorn
+				    </label>
+						<label>
+				      <input type="radio" name="emotion" value="distress"> distress
+				    </label>
+						<label>
+				      <input type="radio" name="emotion" value="anxiety"> anxiety
+				    </label>
+						<label>
+				      <input type="radio" name="emotion" value="serene"> serene
+				    </label>
+						<label>
+				      <input type="radio" name="emotion" value="sincere"> sincere
+				    </label>
+						<label>
+				      <input type="radio" name="emotion" value="wish"> wish
+				    </label>
+						<label>
+				      <input type="radio" name="emotion" value="pity"> pity
+				    </label>
+						<label>
+				      <input type="radio" name="emotion" value="guilt"> guilt
+				    </label>
+						<label>
+				      <input type="radio" name="emotion" value="admire"> admire
+				    </label>
+						<label>
+				      <input type="radio" name="emotion" value="envy"> envy
+				    </label>
+						<label>
+				      <input type="radio" name="emotion" value="like"> like
+				    </label>
+						<label>
+				      <input type="radio" name="emotion" value="laments"> laments
+				    </label>
+						<label>
+				      <input type="radio" name="emotion" value="confusion"> confusion
+				    </label>
+						<label>
+				      <input type="radio" name="emotion" value="caution"> caution
+				    </label>
+						<label>
+				      <input type="radio" name="emotion" value="fierce"> fierce
+				    </label>
+						<label>
+				      <input type="radio" name="emotion" value="trance"> trance
+				    </label>
+					</div>
+  		  </div>
+
+  		  <div class="form-group">
+  		    <label for="" class="control-label">Strength</label>
+          <select name="strength" class="form-control">
+            <option value="1">Weak</option>
+            <option value="2">Strong</option>
+            <option value="3">Stronger</option>
+            <option value="4">Strongest</option>
+            <option value="5">Extreme</option>
+          </select>
+  		  </div>
+
+  		  <div class="form-group">
+  		    <label for="" class="control-label">Polar</label>
+					<div class="radio">
+						<label>
+				      <input type="radio" name="polar" value="1"> Positive
+				    </label>
+						<label>
+				      <input type="radio" name="polar" value="0"> Neutral
+				    </label>
+						<label>
+				      <input type="radio" name="polar" value="-1"> Negative
+				    </label>
+					</div>
+  		  </div>
+
+  		  <div class="form-group">
+  		    <button id="trainBtn" type="button" class="btn btn-default">提交</button>
+  		  </div>
+      </form>
+
+		</div>
+		<script type="text/javascript">
+			$(document).ready(function() {
+			  $('#trainBtn').on('click', function(event) {
+			    $.ajax({
+			      url: '/train/',
+			      type: 'POST',
+						   data: $('#train-form').serialize(),
+         complete: function(xhr, textStatus) {
+       			        //called when complete
+       			      },
+         success: function(data, textStatus, xhr) {
+       			        //called when successful
+									console.log(data);
+
+       			      },
+         error: function(xhr, textStatus, errorThrown) {
+       			        //called when there is an error
+       			      }
+       });
+			  });
+			});
+
+		</script>
+</body>
+</html>
