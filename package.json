@@ -21,12 +21,8 @@
   "dependencies": {
     "lodash.assign": "4.0.4",
 				"express": "",
-				"nodejieba": "",
-				"natural": "",
-				"mongoose": "",
 				"body-parser": "",
-				"parse-cloud-express": "~1.0",
-				"parse": "~1.8.5"
+				"nodejieba": ""
   },
   "engines": {
     "node": ">=0.10"

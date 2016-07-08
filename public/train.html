@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Train</title>
+<title>Train Centre</title>
 <meta name=viewport content="width=device-width,initial-scale=1, user-scalable=no">
 <link href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 <script src="http://cdn.bootcss.com/jquery/1.12.1/jquery.min.js"></script>
@@ -10,7 +10,13 @@
 </head>
 
 <body>
+    <div style="display:none;" class="alert alert-success alert-dismissible fade in" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">×</span></button>
+      <strong>Congrats! </strong> Your message has been successfully sent.
+    </div>
 		<p style="height:24px"></p>
+
 		<div class="container">
       <form id="train-form">
   		  <div class="form-group">
@@ -126,17 +132,22 @@
 		<script type="text/javascript">
 			$(document).ready(function() {
 			  $('#trainBtn').on('click', function(event) {
+          $(this).attr('disabled', true).text('正在保存...');
 			    $.ajax({
 			      url: '/train/',
 			      type: 'POST',
 						   data: $('#train-form').serialize(),
          complete: function(xhr, textStatus) {
-       			        //called when complete
        			      },
          success: function(data, textStatus, xhr) {
        			        //called when successful
-									console.log(data);
-
+  									console.log(data);
+                    $('.alert-success').show(300);
+                    setTimeout(function () {
+                      $('#trainBtn').attr('disabled', false).text('提交');
+                      $('#train-form').trigger('reset');
+                      $('.alert-success').hide(300);
+                    }, 1500);
        			      },
          error: function(xhr, textStatus, errorThrown) {
        			        //called when there is an error
